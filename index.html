@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bacteria Invaders</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="startScreen">
+        <img src="images/logo_mouth.png" alt="Bacteria Invaders Logo" id="logo">
+        <button class="startButton">START</button>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+    <div id="score">
+        <div id="scoreP1">P1 Score: 0</div>
+    </div>
+    <div id="gameOver">
+        <img src="images/game-over.png" alt="Game Over">
+        <p id="gameOverText">Tu boca ha sido invadida por las bacterias</p>
+    </div>
+    <div id="gameWin">
+        <img src="images/total.png" alt="You Win">
+        <p>Tomaste el control Total <br>y salvaste a tu boca de la invasión de las bacterias</br></p>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>

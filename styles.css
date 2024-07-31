@@ -1,0 +1,82 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url('images/back.png');
+    background-size: cover;
+    background-color: black;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+}
+#gameCanvas {
+    display: none; /* Ocultar el canvas inicialmente */
+    margin: 0 auto;
+    background-color: black;
+}
+#score {
+    display: none; /* Ocultar el marcador inicialmente */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+}
+#scoreP1 {
+    margin: 10px;
+}
+#gameOver, #gameWin {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 40px;
+}
+#startScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+#logo {
+    width: 70%; /* Ajusta el tamaño del logo */
+    max-width: 600px; /* Tamaño máximo del logo */
+    margin-bottom: 20px;
+}
+.startButton {
+    display: block;
+    margin: 20px auto;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #444;
+    color: white;
+    border: 2px solid #fff;
+    cursor: pointer;
+    animation: blink 1s infinite;
+    font-family: 'Press Start 2P', cursive;
+}
+.startButton:hover {
+    background-color: #888;
+    transform: scale(1.1);
+    border-color: #ddd;
+}
+#gameOver img, #gameWin img {
+    width: 400px; /* Ajusta el tamaño de la imagen según sea necesario */
+}
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#gameWin p {
+    font-size: 27px; /* Ajusta el tamaño del texto según sea necesario */
+    line-height: 1.5; /* Ajusta el interlineado según sea necesario */
+}
+
+#gameOver p {
+    font-size: 27px; /* Ajusta el tamaño del texto según sea necesario */
+    line-height: 1.5; /* Ajusta el interlineado según sea necesario */
+}
