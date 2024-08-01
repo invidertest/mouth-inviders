@@ -4,49 +4,8 @@ const ctx = canvas.getContext('2d');
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-   
-
 }
 
-
-// Obtener referencias a los botones
-const leftButton = document.getElementById('leftButton');
-const rightButton = document.getElementById('rightButton');
-const shootButton = document.getElementById('shootButton');
-
-
-// Asignar eventos táctiles a los botones
-leftButton.addEventListener('touchstart', moveLeft);
-leftButton.addEventListener('touchend', stopMovement);
-rightButton.addEventListener('touchstart', moveRight);
-rightButton.addEventListener('touchend', stopMovement);
-shootButton.addEventListener('touchstart', shoot);
-
-// Funciones para manejar eventos táctiles
-function moveLeft() {
-  player.dx = -player.speed;
-}
-
-function moveRight() {
-  player.dx = player.speed;
-}
-
-function stopMovement() {
-  player.dx = 0;
-}
-
-
-
-
-function shoot() {
-  const bullet = {
-    x: player.x + player.width / 2 - bulletWidth / 2,
-    y: player.y,
-    width: bulletWidth,
-    height: bulletHeight
-  };
-  bullets.push(bullet);
-}
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
@@ -86,12 +45,11 @@ const player = {
 const invaders = [];
 const rows = 5;
 const cols = 8;
-// Ajustes para invaders
-const invaderWidth = 40; // Reducido de 60 a 40
-const invaderHeight = 40; // Reducido de 60 a 40
-const invaderMargin = 10; // Reducido de 20 a 10
-const invaderSpeed = 1.5; // Reducido de 3 a 1.5
-const invaderDescendAmount = invaderHeight / 2; // Moverse la mitad de su altura
+const invaderWidth = 60;
+const invaderHeight = 60;
+const invaderMargin = 20;
+const invaderSpeed = 3;
+const invaderDescendAmount = invaderHeight;
 
 const bullets = [];
 const bulletWidth = 15;
@@ -111,26 +69,20 @@ let gameTimer;
 let timeLimit = 30; // Tiempo límite de 30 segundos
 
 function createInvaders() {
-    // Calcular el ancho total que ocuparán los invaders en una fila
-    const totalInvadersWidth = cols * invaderWidth + (cols - 1) * invaderMargin;
-  
-    // Calcular la posición inicial del primer invader para centrarlos
-    let startX = (canvas.width - totalInvadersWidth) / 2;
-  
     for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        const invader = {
-          x: startX + col * (invaderWidth + invaderMargin),
-          y: row * (invaderHeight + invaderMargin),
-          width: invaderWidth,
-          height: invaderHeight,
-          dx: invaderSpeed,
-          image: invaderImageElements[Math.floor(Math.random() * invaderImageElements.length)]
-        };
-        invaders.push(invader);
-      }
+        for (let col = 0; col < cols; col++) {
+            const invader = {
+                x: col * (invaderWidth + invaderMargin),
+                y: row * (invaderHeight + invaderMargin),
+                width: invaderWidth,
+                height: invaderHeight,
+                dx: invaderSpeed,
+                image: invaderImageElements[Math.floor(Math.random() * invaderImageElements.length)]
+            };
+            invaders.push(invader);
+        }
     }
-  }
+}
 
 function drawPlayer() {
     ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
@@ -215,25 +167,16 @@ function checkGameOver() {
         clearInterval(gameInterval);
         clearInterval(gameTimer);
         gameOverDisplay.style.display = 'block';
-        // Ocultar el canvas, los botones y el fondo del body
-        canvas.style.display = 'none';
-        document.querySelector('.controls').style.display = 'none';
-        document.body.style.backgroundColor = 'transparent'; // Cambiar el fondo a transparente
     } else if (invaders.length === 0) {
         clearInterval(gameInterval);
         clearInterval(gameTimer);
         gameWinDisplay.style.display = 'block';
-        // Ocultar el canvas, los botones y el fondo del body
-        canvas.style.display = 'none';
-        document.querySelector('.controls').style.display = 'none';
-        document.body.style.backgroundColor = 'transparent'; // Cambiar el fondo a transparente
     }
 }
 
 function startGame() {
     startScreen.style.display = 'none';
     canvas.style.display = 'block';
-    document.querySelector('.controls').style.display = 'flex';
     document.getElementById('score').style.display = 'block';
     gameInterval = setInterval(() => {
         updatePositions();
